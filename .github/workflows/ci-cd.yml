@@ -15,17 +15,28 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          cache: 'pnpm'
+          node-version: 20
+          cache: 'npm'
 
-
+      # 2. 安装依赖
       - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
+      # 3. 类型检查（可选）
       - name: Type Check
-        run: pnpm run typecheck  # 可选
+        run: npm run typecheck  # 需在 package.json 中配置
 
+      # 4. 运行测试
       - name: Run Tests
-        run: pnpm test
+        run: npm test
 
+      # 5. 构建生产包
       - name: Build Production
-        run: pnpm run build
+        run: npm run build
+
+      # 6. 上传产物（按需添加）
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
