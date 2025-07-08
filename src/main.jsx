@@ -5,27 +5,6 @@ import App from './App';
 import HomeLayout from './app/Home/page.js';
 import EquipmentCenter from './app/equipmentCenter/page.js';
 import ModelCenter from './app/modelCenter/page.js';
-
-// const router = createBrowserRouter([
-//     {
-//         path: '/',
-//         element: <App />,
-//         children: [
-//             {
-//                 index: true,  // 默认首页
-//                 element: <Home />
-//             },
-//             {
-//                 path: 'device-center',
-//                 element: <EquipmentCenter />
-//             },
-//             {
-//                 path: 'skill-models',
-//                 element: <ModelCenter />
-//             }
-//         ]
-//     }
-// ]);
 const router = createBrowserRouter([
     {
         path: '/',

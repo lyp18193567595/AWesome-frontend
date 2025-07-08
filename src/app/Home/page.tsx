@@ -123,16 +123,12 @@ const HomeLayout: React.FC = () => {
 
             {/* 右侧内容区域 */}
             <Layout>
-                <Header style={{
-                    padding: 0,
-                    background: SIDER_BG_COLOR,
-                    boxShadow: '0 1px 4px rgba(0, 21, 41, 0.08)'
-                }} />
+
                 <Content style={{ margin: '24px 16px 0' }}>
                     <div
                         style={{
                             padding: 24,
-                            minHeight: 360,
+                            minHeight: 860,
                             background: SIDER_BG_COLOR,
                             borderRadius: borderRadiusLG,
                         }}
@@ -142,7 +138,7 @@ const HomeLayout: React.FC = () => {
                     </div>
                 </Content>
                 <Footer style={{ textAlign: 'center' }}>
-                    ©{new Date().getFullYear()} 系统名称
+                    ©{new Date().getFullYear()} 最终序列
                 </Footer>
             </Layout>
         </Layout>
