@@ -22,7 +22,7 @@ const columns: TableProps<DataType>['columns'] = [
         render: (text) => <a>{text}</a>,
     },
     {
-        title: '任务状态',
+        title: '设备状态',
         dataIndex: 'taskStatus',
         key: 'taskStatus',
     },

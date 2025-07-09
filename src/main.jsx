@@ -5,6 +5,7 @@ import App from './App';
 import HomeLayout from './app/Home/page.js';
 import EquipmentCenter from './app/equipmentCenter/page.js';
 import ModelCenter from './app/modelCenter/page.js';
+import TaskCenter from './app/TaskCenter/page.js';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -14,10 +15,6 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <HomeLayout />, // 布局组件
                 children: [
-                    // {
-                    //     index: true,
-                    //     element: <HomeContent /> // 首页内容组件
-                    // },
                     {
                         path: 'device-center',
                         element: <EquipmentCenter />
@@ -25,6 +22,10 @@ const router = createBrowserRouter([
                     {
                         path: 'skill-models',
                         element: <ModelCenter />
+                    },
+                    {
+                        path: 'task-center',
+                        element: <TaskCenter />
                     },
                     // 其他子路由...
                 ]
