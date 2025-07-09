@@ -69,19 +69,19 @@ const EquipmentCenter = () => {
                 <Image
                     width={28}
                     src={cardImage}
-                    style={{ paddingLeft: '5px', cursor: 'pointer' }}
+                    style={{ paddingLeft: '5px', cursor: 'pointer',marginLeft :'8px'}}
                     onClick={() => toggleViewMode('card')}
                     preview={false}
                 />
                 <Image
                     width={28}
                     src={localImage}
-                    style={{ paddingLeft: '5px', paddingRight: '5px', cursor: 'pointer' }}
+                    style={{ paddingLeft: '5px', paddingRight: '5px', cursor: 'pointer',marginLeft :'10px'}}
                     onClick={() => toggleViewMode('list')}
                     preview={false}
                 />
 
-                <Button type="primary" style={{ paddingLeft: '10px' }} onClick={showModal}>添加新设备</Button>
+                <Button type="primary" style={{ paddingLeft: '20px',marginLeft :'30px'}} onClick={showModal}>添加新设备</Button>
                 <Modal
                     title="Basic Modal"
                     closable={{ 'aria-label': 'Custom Close Button' }}
