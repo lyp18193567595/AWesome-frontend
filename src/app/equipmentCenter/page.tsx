@@ -11,14 +11,29 @@ import type { GetProps } from 'antd';
 import cardImage from '../../assets/card2.png'
 // @ts-ignore
 import localImage from '../../assets/list1.png'
-import equipCard from "./components/equipCard";
+import EquipCard from "./components/EquipCard";
 import {Outlet} from "react-router-dom";
 type SearchProps = GetProps<typeof Input.Search>;
 const { Search } = Input;
-const options = [
-    { value: 'option1', label: '选项1' },
-    { value: 'option2', label: '选项2' },
+const taskState = [
+    { value: '1', label: '任务中' },
+    { value: '2', label: '空闲' },
 ];
+const ConnectionStatus = [
+    { value: '1', label: '在线' },
+    { value: '2', label: '断线' },
+];
+const electricityQuantity = [
+    { value: '1', label: '80-100' },
+    { value: '2', label: '50-80' },
+    { value: '3', label: '0-50' }
+];
+const model = [
+    { value: '1', label: '80-100' },
+    { value: '2', label: '50-80' },
+    { value: '3', label: '0-50' }
+];
+
 const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value);
 const EquipmentCenter = () => {
 
@@ -63,33 +78,37 @@ const EquipmentCenter = () => {
 
             </div>
             <div className="header" style={{paddingBottom :'50px'}}>
+
+               任务状态
                 <Select
-                    defaultValue="option1"
-                    style={{ width: 200,marginRight :'20px'}}
-                    options={options}
+                    defaultValue="1"
+                    style={{ width: 200,marginRight :'20px',paddingLeft :'20px'}}
+                    options={taskState}
                 />
+                连接状态
                 <Select
-                    defaultValue="option1"
-                    style={{ width: 200,marginRight :'20px' }}
-                    options={options}
+                    defaultValue="1"
+                    style={{ width: 200,marginRight :'20px',paddingLeft :'20px' }}
+                    options={ConnectionStatus}
                 />
+                电量
                 <Select
-                defaultValue="option1"
-                style={{ width: 200,marginRight :'20px' }}
-                options={options}
-            />
+                    defaultValue="1"
+                    style={{ width: 200,marginRight :'20px',paddingLeft :'20px'  }}
+                    options={electricityQuantity}
+                />
+                型号
                 <Select
-                defaultValue="option1"
-                style={{ width: 200 }}
-                options={options}
-            />
+                    defaultValue="1"
+                    style={{ width: 200,marginRight :'20px',paddingLeft :'20px'  }}
+                    options={model}
+                />
+
             </div>
-            <div className="content">
-
-                <equipCard />
+            <div className="content" >
 
 
-
+                <EquipCard />
 
 
 
