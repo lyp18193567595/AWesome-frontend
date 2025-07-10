@@ -6,6 +6,7 @@ import HomeLayout from './app/Home/page.js';
 import EquipmentCenter from './app/equipmentCenter/page.js';
 import ModelCenter from './app/modelCenter/page.js';
 import TaskCenter from './app/TaskCenter/page.js';
+import Layout from "@/app/layout/page.js";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -14,10 +15,15 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <HomeLayout />, // 布局组件
+
                 children: [
                     {
                         path: 'device-center',
                         element: <EquipmentCenter />
+                    },
+                    {
+                        path: 'layout',
+                        element: <Layout />
                     },
                     {
                         path: 'skill-models',

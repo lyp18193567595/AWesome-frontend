@@ -2,8 +2,8 @@
 
 
 // @ts-ignore
-import React from 'react';
-import { Card, Space, Button } from 'antd';
+import React, {useState} from 'react';
+import {Card, Space, Button, Modal} from 'antd';
 import { useNavigate } from 'react-router-dom';
 // @ts-ignore
 import online from '../../../assets/online.png';
@@ -30,6 +30,17 @@ const EquipCard: React.FC = () => {
     const handleTaskClick = () => {
         navigate('/task-center');
     };
+    const [isModalVisible,setIsModalVisible] = useState(false)
+    const showModal = ()=> {
+        setIsModalVisible(true);
+    };
+    const handleOk = () => {
+        console.log('设备已删除');
+        setIsModalVisible(false);
+    }
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    }
 
     return (
         <Card
@@ -84,7 +95,19 @@ const EquipCard: React.FC = () => {
                 <img src={electricity} width={20} style={{ marginRight: 4, marginLeft: '10px' }} />
                 <img src={number} width={40} style={{ marginRight: 4, marginLeft: '5px' }} />
                 <img src={blueTeeth} width={20} style={{ marginRight: 4, marginLeft: '10px' }} />
-                <Button type="primary" style={{ marginLeft: '20px' }}>删除设备</Button>
+                <Button type="primary" style={{ marginLeft: '20px' }} onClick={showModal}>删除设备</Button>
+                <Modal title="提示"
+                       visible={isModalVisible}
+                       onOk = {handleOk}
+                       onCancel={handleCancel}
+                       okText="删除"
+                       cancelText="取消"
+
+                >
+                    <p>确认删除该设备？</p>
+
+                </Modal>
+
             </div>
         </Card>
     );

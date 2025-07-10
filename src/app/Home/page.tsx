@@ -80,7 +80,7 @@ const HomeLayout: React.FC = () => {
     const handleMenuClick = ({ key }: { key: string }) => {
         switch (key) {
             case '1':
-                navigate('/', { replace: true });
+                navigate('/layout', { replace: true });
                 break;
             case '2':
                 navigate('device-center', { replace: true }); // 使用相对路径
