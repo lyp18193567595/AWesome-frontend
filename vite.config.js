@@ -10,4 +10,13 @@ export default defineConfig({
 
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000', // Django 后端地址
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '') // 可选：重写路径
+      }
+    }
+  }
 })
