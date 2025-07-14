@@ -113,9 +113,14 @@ const EquipCard: React.FC <{filters: FilterProps}> = ({filters}) => {
             batteryLevelMatch = equipment.battery_level_display.includes('80~100%');
         } else {
             // @ts-ignore
-
-            batteryLevelMatch = filters.batteryLevel === '2' ? equipment.battery_level_display.includes('50~80%') :
-                filters.batteryLevel === '3' ? equipment.battery_level_display.includes('0~50%') :
+            //
+            // batteryLevelMatch = filters.batteryLevel === '2' ? equipment.battery_level_display.includes('50~80%') :
+            //     filters.batteryLevel === '3' ? equipment.battery_level_display.includes('0~50%') :
+            //         true;
+            batteryLevelMatch = filters.batteryLevel === '2' ?
+                equipment.battery_level_display.indexOf('50~80%') !== -1 :
+                filters.batteryLevel === '3' ?
+                    equipment.battery_level_display.indexOf('0~50%') !== -1 :
                     true;
         }
 
