@@ -150,7 +150,13 @@ interface Equipment {
     skill_pack: string;
 }
 
-const EquipCard: React.FC = () => {
+interface FilterProps {
+    taskStatus: string;
+    connectionStatus: string;
+    batteryLevel: string;
+}
+
+const EquipCard: React.FC <{filters: FilterProps}> = ({filters}) => {
     const navigate = useNavigate();
     const [equipments, setEquipments] = useState<Equipment[]>([]);
     const [loading, setLoading] = useState(true);
@@ -198,9 +204,36 @@ const EquipCard: React.FC = () => {
         }
     };
 
+    // 添加过滤逻辑
+    const filteredEquipments = equipments.filter(equipment => {
+        // 任务状态筛选
+        const taskStatusMatch =
+            filters.taskStatus === '1' ? equipment.task_status_display === '任务中' :
+                filters.taskStatus === '2' ? equipment.task_status_display === '空闲' :
+                    true;
+
+        // 连接状态筛选
+        const connectionStatusMatch =
+            filters.connectionStatus === '1' ? equipment.connect_status_display === '在线' :
+                filters.connectionStatus === '2' ? equipment.connect_status_display === '断线' :
+                    true;
+
+        // 电量筛选
+        // @ts-ignore
+        // @ts-ignore
+        // @ts-ignore
+        const batteryLevelMatch =
+            filters.batteryLevel === '1' ? equipment.battery_level_display.includes('80~100%') :
+                filters.batteryLevel === '2' ? equipment.battery_level_display.includes('50~80%') :
+                    filters.batteryLevel === '3' ? equipment.battery_level_display.includes('0~50%') :
+                        true;
+
+        return taskStatusMatch && connectionStatusMatch && batteryLevelMatch;
+    });
+
     return (
         <Space size={16} wrap>
-            {equipments.map(equipment => (
+            {filteredEquipments.map(equipment => (
                 <Card
                     key={equipment.id}
                     hoverable

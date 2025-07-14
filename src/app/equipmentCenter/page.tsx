@@ -45,6 +45,20 @@ const EquipmentCenter = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [viewMode, setViewMode] = useState<'card' | 'list'>('card'); // 新增状态控制显示模式
 
+    const [filters, setFilters] = useState({
+        taskStatus: '1',
+        connectionStatus: '1',
+        batteryLevel: '1',
+    });
+    // 处理筛选条件变化
+    const handleFilterChange = (type: string, value: string) => {
+        setFilters(prev => ({
+            ...prev,
+            [type]: value
+        }));
+    };
+
+
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -95,19 +109,19 @@ const EquipmentCenter = () => {
                 <Select
                     defaultValue="1"
                     style={{ width: 200, marginRight: '20px', paddingLeft: '20px' }}
-                    options={taskState}
+                    options={taskState}  onChange={(value) => handleFilterChange('taskStatus', value)}
                 />
                 连接状态
                 <Select
                     defaultValue="1"
                     style={{ width: 200, marginRight: '20px', paddingLeft: '20px' }}
-                    options={ConnectionStatus}
+                    options={ConnectionStatus}  onChange={(value) => handleFilterChange('connectionStatus', value)}
                 />
                 电量
                 <Select
                     defaultValue="1"
                     style={{ width: 200, marginRight: '20px', paddingLeft: '20px' }}
-                    options={electricityQuantity}
+                    options={electricityQuantity}  onChange={(value) => handleFilterChange('batteryLevel', value)}
                 />
                 型号
                 <Select
@@ -117,7 +131,7 @@ const EquipmentCenter = () => {
                 />
             </div>
             <div className="content">
-                {viewMode === 'card' ? <EquipCard /> : <EquipList />}
+                {viewMode === 'card' ? <EquipCard filters={filters}/> : <EquipList />}
             </div>
         </div>
     );
