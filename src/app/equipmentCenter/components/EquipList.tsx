@@ -1,11 +1,13 @@
+
 /**
  * 设备中心列表
  */
 // @ts-ignore
-import React from 'react';
-import { Space, Table, Tag } from 'antd';
+import React, { useEffect, useState } from 'react';
+import {Space, Table, Spin, Tag} from 'antd';
 import type { TableProps } from 'antd';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 interface DataType {
     key: string;
@@ -18,6 +20,37 @@ interface DataType {
 
 const EquipList: React.FC = () => {
     const navigate = useNavigate();
+    const [tableData, setTableData] = useState<DataType[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    // 获取后端数据
+    useEffect(() => {
+        // @ts-ignore
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://127.0.0.1:8000/api/equipments/');
+                console.log('API 返回数据:', response.data);
+
+                // 转换数据格式
+                const formattedData = response.data.map((item: any) => ({
+                    key: item.id.toString(),
+                    equipName: item.equip_name,
+                    taskStatus: item.task_status_display,
+                    connectStatus: item.connect_status_display,
+                    SkillPack: item.skill_pack.split(',').map((s: string) => s.trim()),
+                    quantityOfElectricity: item.battery_level_display
+                }));
+
+                setTableData(formattedData);
+            } catch (error) {
+                console.error('请求失败:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     const jumpToModelCenter = () => {
         navigate('/skill-models');
@@ -44,11 +77,11 @@ const EquipList: React.FC = () => {
             title: '技能（模型）包',
             key: 'SkillPack',
             dataIndex: 'SkillPack',
-            render: () => (
+            render: (_, record) => (
                 <Space size="middle">
-                    <a onClick={jumpToModelCenter}>
-                        巡检专家
-                    </a>
+                    {record.SkillPack.map(skill => (
+                        <Tag key={skill}>{skill}</Tag>
+                    ))}
                 </Space>
             )
         },
@@ -70,34 +103,15 @@ const EquipList: React.FC = () => {
         },
     ];
 
-    const data: DataType[] = [
-        {
-            key: '1',
-            equipName: '无人机01',
-            taskStatus: '任务中',
-            connectStatus: '在线',
-            SkillPack: ['nice', 'developer'],
-            quantityOfElectricity: '80%'
-        },
-        {
-            key: '2',
-            equipName: '小车',
-            taskStatus: '空闲',
-            connectStatus: '断线',
-            SkillPack: ['loser'],
-            quantityOfElectricity: '80%'
-        },
-        {
-            key: '3',
-            equipName: '小车10',
-            taskStatus: '空闲',
-            connectStatus: '在线',
-            SkillPack: ['cool', 'teacher'],
-            quantityOfElectricity: '80%'
-        },
-    ];
-
-    return <Table<DataType> columns={columns} dataSource={data} />;
+    return (
+        <Spin spinning={loading}>
+            <Table<DataType>
+                columns={columns}
+                dataSource={tableData}
+                rowKey="key"
+            />
+        </Spin>
+    );
 };
 
 export default EquipList;
