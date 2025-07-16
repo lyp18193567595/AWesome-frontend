@@ -8,6 +8,7 @@ import ModelCenter from './app/modelCenter/page.js';
 import TaskCenter from './app/TaskCenter/page.js';
 import Layout from "@/app/layout/page.js";
 import AddEquipPage from "@/app/equipmentCenter/components/EquipAdd.js";
+import DoChatPage from "@/app/layout/components/DoChat.js";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
                     },
                     {
                         path: 'layout',
-                        element: <Layout />
+                        element: <Layout />,
                     },
                     {
                         path: 'skill-models',
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
                         path: 'add-equip',
                         element: <AddEquipPage />
                     },
+                    {
+                        path: 'dochat',
+                        element: <DoChatPage />
+                    }
                     // 其他子路由...
                 ]
             }

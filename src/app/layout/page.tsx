@@ -3,13 +3,20 @@
  */
 
 // @ts-ignore
-import {Button, Card, Col, Row, Space} from 'antd';
+import {Button, Card, Col, Input, Row, Space} from 'antd';
 // @ts-ignore
 import React, {useEffect} from 'react';
+import { ArrowUpOutlined } from '@ant-design/icons';
 import EquipSelect from "./components/EquipSelect";
 import ModelSelect from "./components/ModelSelect";
-
+import { useNavigate } from 'react-router-dom';
 const Layout = () => {
+    const navigate = useNavigate();
+
+    const handleSend = () => {
+        navigate('/dochat'); // 跳转到 dochat 页面
+        console.log('123')
+    };
 
     // @ts-ignore
     return <div>
@@ -17,7 +24,7 @@ const Layout = () => {
             <div className="Layout-header">
                 <h1>快速开始</h1>
                 <p>选择你的模型和设备</p>
-                <Row gutter={16}> {/* gutter 控制间距 */}
+                <Row gutter={16} style={{paddingLeft :'200px',paddingBottom :'30px',paddingTop :'20px'}}> {/* gutter 控制间距 */}
                     <Col span={12}> {/* 每列占 50% 宽度 */}
                         <EquipSelect />
                     </Col>
@@ -26,11 +33,45 @@ const Layout = () => {
                     </Col>
                 </Row>
             </div>
-            <div className="Layout-content">
-                <Button>一键部署</Button>
+            <div className="Layout-content" style={{paddingBottom:'30px'}}>
+                <Button  style={{
+                    width: 150,
+                    height: 40,
+                    borderRadius: 20,
+                    fontSize: 16,
+                    fontWeight: 'bold',
+                }}>一键部署</Button>
             </div>
-            <div className="Layout-footer">
-                对话框
+            <div className="Layout-title" style={{fontSize :'46px',marginLeft :'-950px',fontWeight :'bold'}}>你好，有什么指示？</div>
+            <div className="Layout-footer" style={{
+                padding: '16px',
+
+                position: 'relative',
+
+            }}>
+                <Input.TextArea
+                    rows={2}
+                    placeholder="给我布置一个任务（可以让我召回、巡检、物资投送...）"
+                    style={{
+                        paddingRight: '50px',
+                        borderRadius: '20px',
+                        height:'260px',
+                        width:'1500px',
+                    }}
+                />
+                <Button
+                    type="primary"
+                    icon={<ArrowUpOutlined />}
+                    onClick={handleSend}
+                    style={{
+                        position: 'absolute',
+                        right: '24px',
+                        bottom: '24px',
+                        borderRadius: '50%',
+                        width: '40px',
+                        height: '40px'
+                    }}
+                />
             </div>
         </div>
     </div>;
