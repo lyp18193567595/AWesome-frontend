@@ -73,7 +73,6 @@ const TaskCenter: React.FC = () => {
         },
     ];
 
-
     // 获取所有不重复的状态值
     // @ts-ignore
     const allStatus = [...new Set(data.map(item => item.TaskStatus))];
@@ -118,7 +117,7 @@ const TaskCenter: React.FC = () => {
             key: 'TaskStatus',
         },
         {
-            title: '任务设备',
+            title: '任务设备',                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
             dataIndex: 'TaskEquipment',
             key: 'TaskEquipment',
         },
