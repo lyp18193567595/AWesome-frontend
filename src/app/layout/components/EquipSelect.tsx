@@ -7,14 +7,18 @@ import { Card, Button } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 // @ts-ignore
 import equipImage from '../assets/equip.png'
+import {useNavigate} from "react-router-dom";
 
 const { Meta } = Card;
 
 const EquipSelect: React.FC = () => {
-    // 切换图片的函数（示例）
+
+    const navigate = useNavigate();
     const handlePrev = () => console.log('切换到上一张');
     const handleNext = () => console.log('切换到下一张');
-
+    const handleAddDevice = () => {
+        navigate('/add-equip');
+    };
     return (
         <Card
             hoverable
@@ -58,7 +62,7 @@ const EquipSelect: React.FC = () => {
                 </div>
             }
             title={<div style={{ fontWeight: 'bold' }}>设备卡</div>}
-            extra={<Button size="small">添加</Button>}
+            extra={<Button size="small"  onClick={handleAddDevice} >添加</Button>}
         >
             <Meta title="巡检专家" description="一句话介绍模型的应用场景和功能" />
         </Card>

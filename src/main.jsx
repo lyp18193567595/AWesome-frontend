@@ -7,6 +7,7 @@ import EquipmentCenter from './app/equipmentCenter/page.js';
 import ModelCenter from './app/modelCenter/page.js';
 import TaskCenter from './app/TaskCenter/page.js';
 import Layout from "@/app/layout/page.js";
+import AddEquipPage from "@/app/equipmentCenter/components/EquipAdd.js";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
                     {
                         path: 'task-center',
                         element: <TaskCenter />
+                    },
+                    {
+                        path: 'add-equip',
+                        element: <AddEquipPage />
                     },
                     // 其他子路由...
                 ]
