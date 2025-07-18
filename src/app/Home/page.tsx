@@ -14,7 +14,8 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu, theme } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
-
+// @ts-ignore
+import logoImage from './assets/logo.png'
 const { Header, Content, Footer, Sider } = Layout;
 const SIDER_BG_COLOR = 'white';
 
@@ -44,6 +45,30 @@ const HomeLayout: React.FC = () => {
 
     // 菜单项配置
     const menuItems = [
+        {
+            key: 'logo',
+            icon: (
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                   paddingTop :'30px',
+                    marginBottom: '16px',
+                    borderBottom: '1px solid #f0f0f0',
+                }}>
+                    <img
+                        src={ logoImage }  // 替换为你的 Logo 路径
+                        alt="Logo"
+                        style={{
+                            height: '50px',  // 调整 Logo 大小
+                            width: 'auto',
+                        }}
+                    />
+                </div>
+            ),
+            label: null,  // 不显示 label
+            disabled: true,  // 禁止点击
+        },
         {
             key: '1',
             icon: <AppstoreOutlined />,
@@ -108,7 +133,7 @@ const HomeLayout: React.FC = () => {
             <Sider
                 breakpoint="lg"
                 collapsedWidth="0"
-                style={{ background: SIDER_BG_COLOR }}
+                style={{ background: SIDER_BG_COLOR,height:'100vh' }}
             >
 
                 <Menu
@@ -124,11 +149,11 @@ const HomeLayout: React.FC = () => {
             {/* 右侧内容区域 */}
             <Layout>
 
-                <Content style={{ margin: '24px 16px 0' }}>
+                <Content>
                     <div
                         style={{
                             padding: 24,
-                            minHeight: 860,
+                            minHeight: 'calc(100vh - 64px)',
                             background: SIDER_BG_COLOR,
                             borderRadius: borderRadiusLG,
                         }}

@@ -8,7 +8,6 @@ function App() {
 
     return (
         <>
-
             <Outlet /> {/* 这里会渲染子路由组件 */}
         </>
     );
