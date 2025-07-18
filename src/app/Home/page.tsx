@@ -64,16 +64,16 @@ const HomeLayout: React.FC = () => {
             icon: <ScheduleOutlined />,
             label: '任务中心',
         },
-        {
-            key: '5',
-            icon: <QuestionCircleOutlined />,
-            label: '帮助中心',
-        },
-        {
-            key: '6',
-            icon: <UserOutlined />,
-            label: '个人中心',
-        },
+        // {
+        //     key: '5',
+        //     icon: <QuestionCircleOutlined />,
+        //     label: '帮助中心',
+        // },
+        // {
+        //     key: '6',
+        //     icon: <UserOutlined />,
+        //     label: '个人中心',
+        // },
     ];
 
     // 处理菜单点击 - 使用replace防止历史记录堆积
