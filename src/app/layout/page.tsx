@@ -3,9 +3,9 @@
  */
 
 // @ts-ignore
-import {Button, Card, Col, Input, Row, Space} from 'antd';
+import {Button, Card, Col, Input, Modal, Row, Space} from 'antd';
 // @ts-ignore
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { ArrowUpOutlined } from '@ant-design/icons';
 import EquipSelect from "./components/EquipSelect";
 import ModelSelect from "./components/ModelSelect";
@@ -16,6 +16,19 @@ const Layout = () => {
     const handleSend = () => {
         navigate('/dochat'); // 跳转到 dochat 页面
         console.log('123')
+    };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalOpen(false);
     };
 
     // @ts-ignore
@@ -40,7 +53,18 @@ const Layout = () => {
                     borderRadius: 20,
                     fontSize: 16,
                     fontWeight: 'bold',
-                }}>一键部署</Button>
+                }}  onClick={showModal}>一键部署</Button>
+                <Modal
+                    title="一键部署"
+                    closable={{ 'aria-label': 'Custom Close Button' }}
+                    open={isModalOpen}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                >
+                    <p>详情</p>
+                    <p>详情</p>
+                    <p>详情</p>
+                </Modal>
             </div>
             <div className="Layout-title" style={{fontSize :'46px',marginLeft :'-950px',fontWeight :'bold'}}>你好，有什么指示？</div>
             <div className="Layout-footer" style={{
